@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "fitlog-ankuro-mobile1",
-    "slug": "fitlog-ankuro-mobile1",
+    "slug": "fitlog",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -17,7 +17,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.ankuroapps.fitlog"
     },
     "web": {
       "output": "static",
@@ -39,6 +40,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "29e1449f-9464-4f30-81e0-b45514132280"
+      }
+    },
+    "owner": "ankuro-apps"
   }
 }
