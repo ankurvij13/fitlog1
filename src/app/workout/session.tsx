@@ -1,8 +1,7 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
-
-import { saveWorkout } from "../../utils/workoutStorage";
+import { Alert, FlatList, Pressable, Text, View } from "react-native";
+import { saveWorkoutRecord } from "../../storage/tracker";
 
 export default function Session() {
   const router = useRouter();
@@ -22,23 +21,51 @@ export default function Session() {
         : [...prev, ex]
     );
   };
-
-  const canFinish = done.length >= 0; 
+ 
 
   const finishWorkout = async () => {
-    const workoutData = {
-      id: Date.now().toString(),
-      day: String(day),
-      date: new Date().toISOString(),
-      exercises: exerciseList.map((ex) => ({
-        name: ex,
-        completed: done.includes(ex),
-      })),
+    const unfinished = exerciseList.filter(
+      (ex) => !done.includes(ex)
+    );
+
+    const isComplete = unfinished.length === 0;
+
+    const save = async (skipped: boolean) => {
+      await saveWorkoutRecord({
+        id: Date.now().toString(),
+        date: new Date().toISOString(),
+        workout: String(day),
+        completed: isComplete,
+        skipped,
+        completedExercises: done,
+        unfinishedExercises: unfinished,
+      });
+
+      router.replace("/"); // or "/workout" or tracker
     };
 
-    await saveWorkout(workoutData);
+    // ✅ IF COMPLETE → SAVE DIRECTLY
+    if (isComplete) {
+      await save(false);
+      return;
+    }
 
-    router.replace("/");
+    // ❌ IF INCOMPLETE → SHOW ALERT
+    Alert.alert(
+      "Workout Not Complete ⚠",
+      `You missed ${unfinished.length} exercises.`,
+      [
+        {
+          text: "Continue",
+          style: "cancel",
+        },
+        {
+          text: "Give Up",
+          style: "destructive",
+          onPress: () => save(true),
+        },
+      ]
+    );
   };
 
   return (
@@ -96,13 +123,11 @@ export default function Session() {
       {/* FINISH BUTTON */}
       <Pressable
         onPress={finishWorkout}
-        disabled={!canFinish}
         style={{
-          backgroundColor: canFinish ? "#4F46E5" : "#374151",
+          backgroundColor: "#4F46E5",
           padding: 14,
           borderRadius: 12,
           marginTop: 15,
-          opacity: canFinish ? 1 : 0.5,
         }}
       >
         <Text style={{ color: "white", textAlign: "center" }}>

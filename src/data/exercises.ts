@@ -123,4 +123,17 @@ export const exerciseLibrary = {
     "T-Bar Row",
     "EZ Bar Curl",
   ],
+
+  legsabs: [
+    "Barbell Squat",
+    "Leg Press",
+    "Romanian Deadlift",
+    "Hip Thrust",
+    "Standing Calf Raises",
+    "Cable Crunch",
+    "Hanging Leg Raises",
+    "Russian Twists",
+    "Plank",
+  ],
 };
+

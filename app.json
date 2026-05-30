@@ -7,6 +7,9 @@
     "icon": "./assets/images/icon.png",
     "scheme": "fitlogankuromobile1",
     "userInterfaceStyle": "automatic",
+    "updates": {
+      "enabled": false
+    },
     "ios": {
       "icon": "./assets/expo.icon"
     },
