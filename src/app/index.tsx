@@ -27,7 +27,7 @@ export default function Home() {
       <Text
         style={{
           color: "cornflowerblue",
-          fontSize: 22,
+          fontSize: 18,
           fontWeight: "700",
         }}
       >
@@ -38,7 +38,7 @@ export default function Home() {
         style={{
           color: "#94A3B8",
           marginTop: 8,
-          fontSize: 15,
+          fontSize: 14,
           lineHeight: 22,
         }}
       >
@@ -102,7 +102,7 @@ export default function Home() {
       <Text
         style={{
           color: "cornflowerblue",
-          fontSize: 32,
+          fontSize: 28,
           fontWeight: "bold",
         }}
       >

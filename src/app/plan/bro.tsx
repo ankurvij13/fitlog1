@@ -30,7 +30,7 @@ export default function Bro() {
   return (
     <View style={{ flex: 1, backgroundColor: "#0B1220", padding: 20 }}>
       
-      <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
+      <Text style={{ color: "cornflowerblue", fontSize: 24, fontWeight: "bold" }}>
         Bro Split
       </Text>
 
@@ -43,6 +43,7 @@ export default function Bro() {
           borderRadius: 12,
           marginTop: 15,
           marginBottom: 20,
+          alignSelf: "center"
         }}
       >
         <Text style={{ color: "white", textAlign: "center" }}>

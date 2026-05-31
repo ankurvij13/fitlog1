@@ -75,15 +75,15 @@ export default function Train() {
       style={{ flex: 1, backgroundColor: "#0B1220" }}
       contentContainerStyle={{ padding: 20, paddingBottom: 100 }}
     >
-      <Text style={{ color: "white", fontSize: 30, fontWeight: "bold" }}>
-        Train 💪
+      <Text style={{ color: "cornflowerblue", fontSize: 28, fontWeight: "bold" }}>
+        Train
       </Text>
 
       <Text style={{ color: "#94A3B8", marginTop: 8 }}>
         Plan: {plan?.toUpperCase() || "NOT SET"}
       </Text>
 
-      <Text style={{ color: "#10B981", marginTop: 10, fontSize: 18 }}>
+      <Text style={{ color: "#10B981", marginTop: 10, fontSize: 16 }}>
         Today: {todayWorkout.toUpperCase()}
       </Text>
 

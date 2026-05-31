@@ -1,56 +1,72 @@
 import { useRouter } from "expo-router";
-import { Pressable, ScrollView, Text } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { saveActivePlan } from "../../storage/plans";
 
 export default function Plans() {
   const router = useRouter();
 
-  const PlanCard = ({
-    emoji,
+  const PlanRow = ({
     title,
     subtitle,
+    buttonText,
     onPress,
-  }: any) => (
-    <Pressable
-      onPress={onPress}
+  }: {
+    title: string;
+    subtitle: string;
+    buttonText: string;
+    onPress: () => void;
+  }) => (
+    <View
       style={{
-        backgroundColor: "#111827",
-        padding: 20,
-        borderRadius: 20,
-        marginBottom: 18,
-        borderWidth: 1,
-        borderColor: "#1F2937",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingVertical: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: "#1F2937",
       }}
     >
-      <Text
-        style={{
-          fontSize: 34,
-          marginBottom: 10,
-        }}
-      >
-        {emoji}
-      </Text>
+      <View style={{ flex: 1 }}>
+        <Text
+          style={{
+            color: "cornflowerblue",
+            fontSize: 18,
+            fontWeight: "700",
+          }}
+        >
+          {title}
+        </Text>
 
-      <Text
-        style={{
-          color: "cornflowerblue",
-          fontSize: 22,
-          fontWeight: "700",
-        }}
-      >
-        {title}
-      </Text>
+        <Text
+          style={{
+            color: "#94A3B8",
+            fontSize: 14,
+            marginTop: 4,
+          }}
+        >
+          {subtitle}
+        </Text>
+      </View>
 
-      <Text
+      <Pressable
+        onPress={onPress}
         style={{
-          color: "#94A3B8",
-          marginTop: 8,
-          lineHeight: 22,
+          backgroundColor: "dodgerblue",
+          paddingHorizontal: 18,
+          paddingVertical: 10,
+          borderRadius: 12,
         }}
       >
-        {subtitle}
-      </Text>
-    </Pressable>
+        <Text
+          style={{
+            color: "#fff",
+            fontWeight: "700",
+          }}
+        >
+          {buttonText}
+        </Text>
+      </Pressable>
+    </View>
   );
 
   return (
@@ -67,11 +83,11 @@ export default function Plans() {
       <Text
         style={{
           color: "cornflowerblue",
-          fontSize: 32,
+          fontSize: 28,
           fontWeight: "bold",
         }}
       >
-        Workout Plans
+        Fitness Blueprints
       </Text>
 
       <Text
@@ -85,30 +101,30 @@ export default function Plans() {
         {/* Choose your preferred training style */}
       </Text>
 
-      <PlanCard
-        emoji=""
+      <PlanRow
         title="Push Pull Legs"
-        subtitle="Balanced split"
+        subtitle="Strength + Hypertrophy"
+        buttonText="Start"
         onPress={async () => {
           await saveActivePlan("ppl");
           router.push("/plan/ppl");
         }}
       />
 
-      <PlanCard
-        emoji=""
+      <PlanRow
         title="Bro Split"
-        subtitle="Classic bodybuilding"
+        subtitle="Classic Bodybuilding"
+        buttonText="Start"
         onPress={async () => {
           await saveActivePlan("bro");
           router.push("/plan/bro");
         }}
       />
 
-      <PlanCard
-        emoji=""
+      <PlanRow
         title="Custom Workout"
-        subtitle="Create your own"
+        subtitle="Build your own routine"
+        buttonText="Create"
         onPress={() => router.push("/plan/custom")}
       />
     </ScrollView>

@@ -54,7 +54,7 @@ export default function Tracker() {
       contentContainerStyle={{ padding: 20, paddingBottom: 120 }}
     >
       {/* HEADER */}
-      <Text style={{ color: "cornflowerblue", fontSize: 32, fontWeight: "bold" }}>
+      <Text style={{ color: "cornflowerblue", fontSize: 28, fontWeight: "bold" }}>
         Live Tracker
       </Text>
 
@@ -78,7 +78,7 @@ export default function Tracker() {
         <Text
           style={{
             color: "cornflowerblue",
-            fontSize: 22,
+            fontSize: 20,
             fontWeight: "bold",
             marginTop: 8,
           }}
@@ -91,7 +91,7 @@ export default function Tracker() {
       <Text
         style={{
           color: "cornflowerblue",
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: "700",
           marginTop: 30,
           marginBottom: 15,
@@ -171,7 +171,7 @@ export default function Tracker() {
             >
               <Text
                 style={{
-                  fontSize: 24,
+                  fontSize: 20,
                 }}
               >
                 {icon}
@@ -186,7 +186,7 @@ export default function Tracker() {
       <Text
         style={{
           color: "cornflowerblue",
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: "700",
           marginTop: 30,
           marginBottom: 15,
@@ -206,7 +206,7 @@ export default function Tracker() {
             alignItems: "center",
           }}
         >
-          <Text style={{ color: "#10B981", fontSize: 26, fontWeight: "bold" }}>
+          <Text style={{ color: "#10B981", fontSize: 20, fontWeight: "bold" }}>
             {done}
           </Text>
           <Text style={{ color: "#94A3B8", marginTop: 5 }}>Done</Text>
@@ -222,7 +222,7 @@ export default function Tracker() {
             alignItems: "center",
           }}
         >
-          <Text style={{ color: "#EF4444", fontSize: 26, fontWeight: "bold" }}>
+          <Text style={{ color: "#EF4444", fontSize: 20, fontWeight: "bold" }}>
             {missed}
           </Text>
           <Text style={{ color: "#94A3B8", marginTop: 5 }}>Missed</Text>
@@ -238,7 +238,7 @@ export default function Tracker() {
             alignItems: "center",
           }}
         >
-          <Text style={{ color: "#F59E0B", fontSize: 26, fontWeight: "bold" }}>
+          <Text style={{ color: "#F59E0B", fontSize: 20, fontWeight: "bold" }}>
             {streak}
           </Text>
           <Text style={{ color: "#94A3B8", marginTop: 5 }}>Streak</Text>
