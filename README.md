@@ -5,7 +5,9 @@ A cross-platform fitness tracking application built using React Native (Expo) th
 ---
 
 ## 📱 Live App
-- Expo Build: https://expo.dev/accounts/ankuro-apps/projects/fitlog/builds/cfc76a28-163a-40c2-9284-ca6f33106194
+- Download / Run:
+- Expo Go (development)
+- Play Store (coming soon)
 
 ---
 
