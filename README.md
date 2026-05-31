@@ -6,29 +6,29 @@ A cross-platform fitness tracking application built using React Native (Expo) th
 
 <p align="center">
 
-### 🏠 Home Screen
+### jussaFit
+<img src="assets/screenshots/jussa.jpg" width="240"/>
+
+### Tracker
+<img src="assets/screenshots/tracker.jpg" width="240"/>
+
+### Plan selecter
 <img src="assets/screenshots/home.jpg" width="240"/>
 
-### 📊 Dashboard
-<img src="assets/screenshots/dashboard.jpg" width="240"/>
+### Bro split
+<img src="assets/screenshots/bro.jpg" width="240"/>
 
-### 🏋️ Workout Screen
-<img src="assets/screenshots/workout.jpg" width="240"/>
+### Push pull legs
+<img src="assets/screenshots/ppl.jpg" width="240"/>
 
-### 📅 Progress View
-<img src="assets/screenshots/progress.jpg" width="240"/>
+### Train
+<img src="assets/screenshots/train.jpg" width="240"/>
 
-### ➕ Add Workout
-<img src="assets/screenshots/add-workout.jpg" width="240"/>
+###  Workout
+<img src="assets/screenshots/work.jpg" width="240"/>
 
-### 📈 Analytics
-<img src="assets/screenshots/analytics.jpg" width="240"/>
-
-### ⚙️ Settings
-<img src="assets/screenshots/settings.jpg" width="240"/>
-
-### 🔔 Notifications / Summary
-<img src="assets/screenshots/notifications.jpg" width="240"/>
+###  Rest day
+<img src="assets/screenshots/rest.jpg" width="240"/>
 
 </p>
 
