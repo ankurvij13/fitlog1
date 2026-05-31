@@ -2,6 +2,36 @@
 
 A cross-platform fitness tracking application built using React Native (Expo) that helps users log workouts, track progress, and maintain fitness consistency.
 
+## 📸 Screenshots
+
+<p align="center">
+
+### 🏠 Home Screen
+<img src="assets/screenshots/home.png" width="240"/>
+
+### 📊 Dashboard
+<img src="assets/screenshots/dashboard.png" width="240"/>
+
+### 🏋️ Workout Screen
+<img src="assets/screenshots/workout.png" width="240"/>
+
+### 📅 Progress View
+<img src="assets/screenshots/progress.png" width="240"/>
+
+### ➕ Add Workout
+<img src="assets/screenshots/add-workout.png" width="240"/>
+
+### 📈 Analytics
+<img src="assets/screenshots/analytics.png" width="240"/>
+
+### ⚙️ Settings
+<img src="assets/screenshots/settings.png" width="240"/>
+
+### 🔔 Notifications / Summary
+<img src="assets/screenshots/notifications.png" width="240"/>
+
+</p>
+
 ---
 
 ## 📱 Live App
