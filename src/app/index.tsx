@@ -26,7 +26,7 @@ export default function Home() {
     >
       <Text
         style={{
-          color: "white",
+          color: "cornflowerblue",
           fontSize: 22,
           fontWeight: "700",
         }}
@@ -68,7 +68,7 @@ export default function Home() {
     >
       <Text
         style={{
-          color: "white",
+          color: "cornflowerblue",
           fontWeight: "700",
           fontSize: 15,
         }}
@@ -101,12 +101,12 @@ export default function Home() {
       {/* HEADER */}
       <Text
         style={{
-          color: "white",
+          color: "cornflowerblue",
           fontSize: 32,
           fontWeight: "bold",
         }}
       >
-        FitLog 💪
+        JussaFit..
       </Text>
 
       <Text
@@ -117,33 +117,33 @@ export default function Home() {
           marginBottom: 30,
         }}
       >
-        Track workouts and stay consistent
+        {/* Track workouts and stay consistent */}
       </Text>
 
       {/* CREATE WORKOUT */}
       <MainCard
-        title="Create Workout"
-        subtitle="Create, edit and manage your workout plans"
+        title="Create"
+        subtitle="Create your workout plans"
         onPress={() => router.push("/plans")}
       />
 
       <MainCard
         title="Train"
-        subtitle="Start today's workout session"
+        subtitle="Start current workout"
         onPress={() => router.push("/workout")}
       />
 
       {/* LIVE TRACKER */}
       <MainCard
-        title="Live Workout Tracker"
-        subtitle="Continue your active weekly training schedule"
+        title="Tracker"
+        subtitle="Track your training"
         onPress={() => router.push("/tracker")}
       />
 
       {/* QUICK OVERVIEW */}
-      <Text
+      {/* <Text
         style={{
-          color: "white",
+          color: "cornflowerblue",
           fontSize: 22,
           fontWeight: "700",
           marginTop: 10,
@@ -151,23 +151,34 @@ export default function Home() {
         }}
       >
         Weekly Progress
-      </Text>
+      </Text> */}
 
-      <MiniCard
-        day="Monday"
-        workout="Chest Workout"
-        completed
-      />
+      <View
+        style={{
+          marginTop: 40,
+          alignItems: "center",
+        }}
+      >
+        <Text
+          style={{
+            color: "#64748B",
+            fontSize: 12,
+          }}
+        >
+          JussaFit™
+        </Text>
 
-      <MiniCard
-        day="Tuesday"
-        workout="Back Workout"
-      />
+        <Text
+          style={{
+            color: "#475569",
+            fontSize: 11,
+            marginTop: 4,
+          }}
+        >
+          Built by Ankuro
+        </Text>
+      </View>
 
-      <MiniCard
-        day="Wednesday"
-        workout="Leg Day"
-      />
     </ScrollView>
   );
 }

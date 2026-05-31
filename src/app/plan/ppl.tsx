@@ -28,7 +28,7 @@ export default function PPL() {
     <View style={{ flex: 1, backgroundColor: "#0B1220", padding: 20 }}>
       
       <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
-        Push Pull Legs 📅
+        Push Pull Legs
       </Text>
 
       {/* SELECT PLAN BUTTON */}

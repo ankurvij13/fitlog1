@@ -3,8 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const TRACKER_KEY = "WORKOUT_TRACKER";
 
 export type WorkoutRecord = {
-  id: string;
-  date: string;
+  dateKey: string; // e.g. "2026-W04-monday"
   workout: string;
 
   completed: boolean;
@@ -14,19 +13,14 @@ export type WorkoutRecord = {
   unfinishedExercises: string[];
 };
 
-export const saveWorkoutRecord = async (
-  record: WorkoutRecord
-) => {
+// ---------------- SAVE (OVERWRITE SAME DAY) ----------------
+export const saveWorkoutRecord = async (record: WorkoutRecord) => {
   try {
-    const existing = await AsyncStorage.getItem(
-      TRACKER_KEY
-    );
+    const existing = await AsyncStorage.getItem(TRACKER_KEY);
+    const data = existing ? JSON.parse(existing) : {};
 
-    const data = existing
-      ? JSON.parse(existing)
-      : [];
-
-    data.push(record);
+    // overwrite same day
+    data[record.dateKey] = record;
 
     await AsyncStorage.setItem(
       TRACKER_KEY,
@@ -37,16 +31,15 @@ export const saveWorkoutRecord = async (
   }
 };
 
-export const getCompletedWorkouts =
-  async (): Promise<WorkoutRecord[]> => {
-    try {
-      const data = await AsyncStorage.getItem(
-        TRACKER_KEY
-      );
-
-      return data ? JSON.parse(data) : [];
-    } catch (e) {
-      console.log("TRACKER GET ERROR", e);
-      return [];
-    }
-  };
+// ---------------- GET ALL ----------------
+export const getWorkoutRecords = async (): Promise<
+  Record<string, WorkoutRecord>
+> => {
+  try {
+    const data = await AsyncStorage.getItem(TRACKER_KEY);
+    return data ? JSON.parse(data) : {};
+  } catch (e) {
+    console.log("TRACKER GET ERROR", e);
+    return {};
+  }
+};

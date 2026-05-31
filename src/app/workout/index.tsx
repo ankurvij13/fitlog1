@@ -11,7 +11,7 @@ export default function Train() {
   const [plan, setPlan] = useState<string | null>(null);
   const [todayWorkout, setTodayWorkout] = useState<string>("");
   const [exercises, setExercises] = useState<string[]>([]);
-
+  const isRestDay = todayWorkout === "rest" || todayWorkout === "";
   const getTodayWorkout = (plan: string) => {
     const day = new Date().getDay();
 
@@ -106,24 +106,28 @@ export default function Train() {
 
       {/* START BUTTON */}
       <Pressable
-        onPress={() =>
+        onPress={() => {
+          if (isRestDay) return;
+          
           router.push({
             pathname: "/workout/session",
             params: {
               exercises: JSON.stringify(exercises),
               day: todayWorkout,
             },
-          })
-        }
+          });
+        }}
+        disabled={isRestDay}
         style={{
-          backgroundColor: "#4F46E5",
+          backgroundColor: isRestDay ? "#374151" : "#4F46E5",
           padding: 14,
           borderRadius: 12,
           marginTop: 20,
+          opacity: isRestDay ? 0.5 : 1,
         }}
       >
         <Text style={{ color: "white", textAlign: "center" }}>
-          Start Training
+          {isRestDay ? "fuhgeddaboudit 😴" : "Start Training"}
         </Text>
       </Pressable>
     </ScrollView>

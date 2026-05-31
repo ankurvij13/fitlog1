@@ -18,12 +18,12 @@ export default function Bro() {
   };
 
   const days = [
-    { day: "Mon", workout: "Chest" },
-    { day: "Tue", workout: "Back" },
-    { day: "Wed", workout: "Legs" },
-    { day: "Thu", workout: "Biceps" },
-    { day: "Fri", workout: "Triceps" },
-    { day: "Sat", workout: "Shoulders" },
+    { day: "Mon", workout: "Legs" },
+    { day: "Tue", workout: "Chest" },
+    { day: "Wed", workout: "Biceps_abs" },
+    { day: "Thu", workout: "Shoulders" },
+    { day: "Fri", workout: "Back" },
+    { day: "Sat", workout: "Triceps_abs" },
     { day: "Sun", workout: "Rest" },
   ];
 
@@ -31,7 +31,7 @@ export default function Bro() {
     <View style={{ flex: 1, backgroundColor: "#0B1220", padding: 20 }}>
       
       <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
-        Bro Split 📅
+        Bro Split
       </Text>
 
       {/* SELECT PLAN BUTTON */}

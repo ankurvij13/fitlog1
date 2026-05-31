@@ -2,6 +2,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert, FlatList, Pressable, Text, View } from "react-native";
 import { saveWorkoutRecord } from "../../storage/tracker";
+import { getDateKey } from "../../storage/weekKey";
 
 export default function Session() {
   const router = useRouter();
@@ -31,26 +32,32 @@ export default function Session() {
     const isComplete = unfinished.length === 0;
 
     const save = async (skipped: boolean) => {
+      const dateKey = getDateKey();
+
       await saveWorkoutRecord({
-        id: Date.now().toString(),
-        date: new Date().toISOString(),
+        dateKey, // 🔥 THIS is now correct
+
         workout: String(day),
+
         completed: isComplete,
         skipped,
+
         completedExercises: done,
         unfinishedExercises: unfinished,
       });
 
-      router.replace("/"); // or "/workout" or tracker
+      // Alert.alert("Saved", "Workout stored successfully");
+
+      router.replace("/");
     };
 
-    // ✅ IF COMPLETE → SAVE DIRECTLY
+    // ✅ COMPLETE WORKOUT
     if (isComplete) {
       await save(false);
       return;
     }
 
-    // ❌ IF INCOMPLETE → SHOW ALERT
+    // ❌ INCOMPLETE WORKOUT ALERT
     Alert.alert(
       "Workout Not Complete ⚠",
       `You missed ${unfinished.length} exercises.`,
@@ -58,6 +65,9 @@ export default function Session() {
         {
           text: "Continue",
           style: "cancel",
+          onPress: () => {
+            Alert.alert("Good", "Keep going 💪");
+          },
         },
         {
           text: "Give Up",

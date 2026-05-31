@@ -33,7 +33,7 @@ export default function Plans() {
 
       <Text
         style={{
-          color: "white",
+          color: "cornflowerblue",
           fontSize: 22,
           fontWeight: "700",
         }}
@@ -66,29 +66,29 @@ export default function Plans() {
     >
       <Text
         style={{
-          color: "white",
+          color: "cornflowerblue",
           fontSize: 32,
           fontWeight: "bold",
         }}
       >
-        Workout Plans 🏋️
+        Workout Plans
       </Text>
 
       <Text
         style={{
           color: "#94A3B8",
           marginTop: 8,
-          marginBottom: 30,
+          marginBottom: 10,
           fontSize: 15,
         }}
       >
-        Choose your preferred training style
+        {/* Choose your preferred training style */}
       </Text>
 
       <PlanCard
-        emoji="🔥"
+        emoji=""
         title="Push Pull Legs"
-        subtitle="Balanced split focused on recovery and progressive overload"
+        subtitle="Balanced split"
         onPress={async () => {
           await saveActivePlan("ppl");
           router.push("/plan/ppl");
@@ -96,9 +96,9 @@ export default function Plans() {
       />
 
       <PlanCard
-        emoji="💪"
+        emoji=""
         title="Bro Split"
-        subtitle="Classic bodybuilding split targeting one muscle group per day"
+        subtitle="Classic bodybuilding"
         onPress={async () => {
           await saveActivePlan("bro");
           router.push("/plan/bro");
@@ -106,9 +106,9 @@ export default function Plans() {
       />
 
       <PlanCard
-        emoji="⚡"
+        emoji=""
         title="Custom Workout"
-        subtitle="Create your own training schedule and exercise combinations"
+        subtitle="Create your own"
         onPress={() => router.push("/plan/custom")}
       />
     </ScrollView>

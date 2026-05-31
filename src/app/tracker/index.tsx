@@ -1,196 +1,248 @@
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 
-import { getActivePlan } from "../../storage/plans";
+import {
+  buildWeekStatus,
+  calculateStreak,
+  getDoneCount,
+  getMissedCount,
+  getWeeklyWorkouts,
+} from "../../lib/trackerLogic";
+import { getWorkoutRecords } from "../../storage/tracker";
 
 export default function Tracker() {
-  const [activePlan, setActivePlan] =
-    useState<string | null>(null);
+  const [done, setDone] = useState(0);
+  const [missed, setMissed] = useState(0);
+  const [streak, setStreak] = useState(0);
+  const [weekStatus, setWeekStatus] = useState<string[]>([]);
+
+  const load = async () => {
+    const data = await getWorkoutRecords();
+    // Alert.alert("DATA", JSON.stringify(data)); // 🔥 debug
+    // data = Record<string, WorkoutRecord>
+
+    const weekly = getWeeklyWorkouts(data);
+
+    setDone(getDoneCount(weekly));
+    setMissed(getMissedCount(weekly));
+    setStreak(calculateStreak(data));
+    setWeekStatus(buildWeekStatus(weekly));
+  };
 
   useFocusEffect(
     useCallback(() => {
-      loadPlan();
+      load();
     }, [])
   );
 
-  const loadPlan = async () => {
-    const plan = await getActivePlan();
-    setActivePlan(plan);
-  };
+  const today = new Date().getDay();
 
-  const broDays = [
-    "Chest",
-    "Back",
-    "Legs",
-    "Biceps",
-    "Triceps",
-    "Shoulders",
-    "Rest",
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
   ];
-
-  const pplDays = [
-    "Push",
-    "Pull",
-    "Legs + Abs",
-    "Push",
-    "Pull",
-    "Legs + Abs",
-    "Rest",
-  ];
-
-  const todayIndex = new Date().getDay();
-
-  const fixedIndex =
-    todayIndex === 0 ? 6 : todayIndex - 1;
-
-  const workouts =
-    activePlan === "ppl"
-      ? pplDays
-      : broDays;
-
-  const todayWorkout = workouts[fixedIndex];
-
-  const nextWorkout =
-    workouts[(fixedIndex + 1) % workouts.length];
 
   return (
     <ScrollView
-      style={{
-        flex: 1,
-        backgroundColor: "#0B1220",
-      }}
-      contentContainerStyle={{
-        padding: 20,
-        paddingBottom: 120,
-      }}
+      style={{ flex: 1, backgroundColor: "#0B1220" }}
+      contentContainerStyle={{ padding: 20, paddingBottom: 120 }}
     >
       {/* HEADER */}
-      <Text
-        style={{
-          color: "white",
-          fontSize: 32,
-          fontWeight: "bold",
-        }}
-      >
-        Live Tracker 📈
+      <Text style={{ color: "cornflowerblue", fontSize: 32, fontWeight: "bold" }}>
+        Live Tracker
       </Text>
 
-      <Text
-        style={{
-          color: "#94A3B8",
-          marginTop: 8,
-          marginBottom: 30,
-          fontSize: 15,
-        }}
-      >
-        Your current training progress
+      <Text style={{ color: "#94A3B8", marginTop: 6 }}>
+        Real workout analytics
       </Text>
 
-      {/* ACTIVE PLAN */}
+      {/* TODAY */}
       <View
         style={{
           backgroundColor: "#111827",
-          borderRadius: 22,
-          padding: 22,
-          borderWidth: 1,
-          borderColor: "#1F2937",
+          padding: 20,
+          borderRadius: 18,
+          marginTop: 20,
         }}
       >
-        <Text
-          style={{
-            color: "#10B981",
-            fontSize: 14,
-            fontWeight: "700",
-          }}
-        >
-          ACTIVE PLAN
+        <Text style={{ color: "#10B981", fontWeight: "700" }}>
+          TODAY
         </Text>
 
         <Text
           style={{
-            color: "white",
-            fontSize: 30,
+            color: "cornflowerblue",
+            fontSize: 22,
             fontWeight: "bold",
-            marginTop: 10,
+            marginTop: 8,
           }}
         >
-          {activePlan?.toUpperCase() || "NONE"}
-        </Text>
-
-        <Text
-          style={{
-            color: "#94A3B8",
-            marginTop: 10,
-          }}
-        >
-          Today: {todayWorkout}
-        </Text>
-
-        <Text
-          style={{
-            color: "#94A3B8",
-            marginTop: 6,
-          }}
-        >
-          Next: {nextWorkout}
+          {days[today]}
         </Text>
       </View>
 
-      {/* WEEK STATUS */}
+      {/* WEEK VISUAL */}
       <Text
         style={{
-          color: "white",
+          color: "cornflowerblue",
           fontSize: 22,
           fontWeight: "700",
-          marginTop: 35,
-          marginBottom: 18,
+          marginTop: 30,
+          marginBottom: 15,
         }}
       >
-        Weekly Status
+        This Week
       </Text>
 
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
+          backgroundColor: "#111827",
+          borderRadius: 18,
+          padding: 16,
         }}
       >
-        {[
-          { label: "Done", value: "4" },
-          { label: "Missed", value: "1" },
-          { label: "Streak", value: "6" },
-        ].map((item) => (
-          <View
-            key={item.label}
+        {/* DAYS */}
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map((day) => (
+          <Pressable
+            key={day}
+            onPress={() => {}}
             style={{
-              backgroundColor: "#111827",
-              width: "31%",
-              padding: 18,
-              borderRadius: 18,
+              width: 32,
               alignItems: "center",
             }}
           >
             <Text
               style={{
-                color: "white",
-                fontSize: 26,
-                fontWeight: "bold",
-              }}
-            >
-              {item.value}
-            </Text>
-
-            <Text
-              style={{
                 color: "#94A3B8",
-                marginTop: 6,
+                fontWeight: "600",
+                textAlign: "center",
               }}
             >
-              {item.label}
+              {day}
             </Text>
-          </View>
-        ))}
+          </Pressable>
+          ))}
+        </View>
+
+        {/* STATUS */}
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 12,
+          }}
+        >
+        {weekStatus.map((status, index) => {
+          const todayIndex =
+            new Date().getDay() === 0
+              ? 6
+              : new Date().getDay() - 1;
+
+          let icon = "⚪";
+
+          if (index === todayIndex) {
+            icon = "🔵";
+          } else if (status === "done") {
+            icon = "🟢";
+          } else if (status === "missed") {
+            icon = "🟠";
+          }
+
+          return (
+            <Pressable
+              key={index}
+              onPress={() => {}}
+              style={{
+                width: 32,
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 24,
+                }}
+              >
+                {icon}
+              </Text>
+            </Pressable>
+          );
+        })}
+        </View>
+      </View>
+      
+      {/* STATS */}
+      <Text
+        style={{
+          color: "cornflowerblue",
+          fontSize: 22,
+          fontWeight: "700",
+          marginTop: 30,
+          marginBottom: 15,
+        }}
+      >
+        Weekly Stats
+      </Text>
+
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        {/* DONE */}
+        <View
+          style={{
+            backgroundColor: "#111827",
+            width: "31%",
+            padding: 16,
+            borderRadius: 16,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: "#10B981", fontSize: 26, fontWeight: "bold" }}>
+            {done}
+          </Text>
+          <Text style={{ color: "#94A3B8", marginTop: 5 }}>Done</Text>
+        </View>
+
+        {/* MISSED */}
+        <View
+          style={{
+            backgroundColor: "#111827",
+            width: "31%",
+            padding: 16,
+            borderRadius: 16,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: "#EF4444", fontSize: 26, fontWeight: "bold" }}>
+            {missed}
+          </Text>
+          <Text style={{ color: "#94A3B8", marginTop: 5 }}>Missed</Text>
+        </View>
+
+        {/* STREAK */}
+        <View
+          style={{
+            backgroundColor: "#111827",
+            width: "31%",
+            padding: 16,
+            borderRadius: 16,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: "#F59E0B", fontSize: 26, fontWeight: "bold" }}>
+            {streak}
+          </Text>
+          <Text style={{ color: "#94A3B8", marginTop: 5 }}>Streak</Text>
+        </View>
       </View>
     </ScrollView>
   );

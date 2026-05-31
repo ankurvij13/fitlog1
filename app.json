@@ -1,24 +1,22 @@
 {
   "expo": {
-    "name": "fitlog-ankuro-mobile1",
+    "name": "JussaFit",
     "slug": "fitlog",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/jussafit.png",
     "scheme": "fitlogankuromobile1",
     "userInterfaceStyle": "automatic",
     "updates": {
       "enabled": false
     },
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/jussafit.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/jussafit.png",
+        "backgroundColor": "#0B1220"
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.ankuroapps.fitlog"
